@@ -2,27 +2,24 @@ package com.ssn.practica.dto;
 
 import java.util.Date;
 
-import com.ssn.practica.dao.TaskDAO;
 import com.ssn.practica.model.Answer;
-import com.ssn.practica.model.Task;
 
 public class AnswerDTO {
-
-	private Long id;
+	private String answerId;
 	private String answer;
 	private Date date;
-	private String taskTaskId;
+	private String questionId;
 
 	public AnswerDTO() {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public String getAnswerId() {
+		return answerId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setAnswerId(String answerId) {
+		this.answerId = answerId;
 	}
 
 	public String getAnswer() {
@@ -41,35 +38,38 @@ public class AnswerDTO {
 		this.date = date;
 	}
 
-	public String getTaskTaskId() {
-		return taskTaskId;
+	public String getQuestionId() {
+		return questionId;
 	}
 
-	public void setTaskTaskId(String taskTaskId) {
-		this.taskTaskId = taskTaskId;
+	public void setQuestionId(String questionId) {
+		this.questionId = questionId;
 	}
 
 	public static AnswerDTO fromAnswer(Answer answer) {
 		AnswerDTO answerDTO = new AnswerDTO();
 
+		answerDTO.setAnswerId(answer.getAnswerId());
 		answerDTO.setAnswer(answer.getAnswer());
-		answerDTO.setId(answer.getId());
 		answerDTO.setDate(answer.getDate());
-		answerDTO.setTaskTaskId(answer.getTask().getTaskId());
+		answerDTO.setQuestionId(answer.getQuestion().getQuestionId());
+
 		return answerDTO;
 	}
 
 	public static Answer fromAnswerDTO(AnswerDTO answerDTO) {
 		Answer answer = new Answer();
 
+		answer.setAnswerId(answerDTO.getAnswerId());
 		answer.setAnswer(answerDTO.getAnswer());
-		answer.setId(answerDTO.getId());
 		answer.setDate(answerDTO.getDate());
 
-		TaskDAO taskDAO = new TaskDAO();
-		Task task = taskDAO.getTaskByTaskId(answerDTO.getTaskTaskId());
+		// QuestionDAO questionDAO = new QuestionDAO();
+		// Question question =
+		// questionDAO.getQuestionByQuestionId(answerDTO.getQuestionId());
 
-		answer.setTask(task);
+		// answer.setQuestion(question);
+
 		return answer;
 	}
 

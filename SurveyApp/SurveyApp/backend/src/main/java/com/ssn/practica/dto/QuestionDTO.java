@@ -7,7 +7,6 @@ import com.ssn.practica.model.Answer;
 import com.ssn.practica.model.Question;
 
 public class QuestionDTO {
-	private Long id;
 	private String questionId;
 	private String question;
 	private Answer answer;
@@ -16,14 +15,6 @@ public class QuestionDTO {
 
 	public QuestionDTO() {
 		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getQuestionId() {
@@ -69,7 +60,6 @@ public class QuestionDTO {
 	public static QuestionDTO fromQuestion(Question question) {
 		QuestionDTO questionDTO = new QuestionDTO();
 
-		questionDTO.setId(question.getId());
 		questionDTO.setQuestionId(question.getQuestionId());
 		questionDTO.setQuestion(question.getQuestion());
 		questionDTO.setAnswer(question.getAnswer());
@@ -84,6 +74,23 @@ public class QuestionDTO {
 
 	public static Question fromQuestionDTO(QuestionDTO questionDTO) {
 		Question question = new Question();
+
+		question.setQuestionId(questionDTO.getQuestionId());
+		question.setQuestion(questionDTO.getQuestion());
+		question.setAnswer(questionDTO.getAnswer());
+
+		List<Answer> answers = new ArrayList<Answer>();
+
+		for (AnswerDTO answerDTO : questionDTO.getAnswerDTOs()) {
+			answers.add(AnswerDTO.fromAnswerDTO(answerDTO));
+		}
+
+		question.setAnswers(answers);
+
+		// SurveyDAO surveyDAO = new SurveyDAO();
+		// Survey survey = surveyDTO.getSurveyBySurveyId(questionDTO.getSurveyId());
+
+		// question.setSurvey(survey);
 
 		return question;
 	}
