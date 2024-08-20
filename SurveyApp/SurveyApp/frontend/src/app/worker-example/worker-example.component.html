@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="header">Header</div>
+    <div class="data">Data area <br />
+        Order ID: <B>{{order?.orderId}}</B> <br />
+        State: <B>{{order?.state}}</B> <br />
+    </div>
+    <div class="middle" [ngClass]="{
+        'error-background': errorState,
+        'finished-background': !errorState && finishedState,
+        'normal-background': !errorState,
+        }">
+        <div class="info-zone">{{infoMessage}}</div>
+        <div class="action-zone">
+            <input type="text" [(ngModel)]="barcode" (keydown)="onKeyDown($event)" placeholder="">
+        </div>
+    </div>
+    <div class="footer">
+        <button type="submit" class="btn btn-primary" [disabled]="isConfirmDisabled" (click)="confirmOrder()">
+            Confirm
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!finishedState || order == null"
+            (click)="cancelOrder()">
+            Cancel
+        </button>
+    </div>
+</div>
