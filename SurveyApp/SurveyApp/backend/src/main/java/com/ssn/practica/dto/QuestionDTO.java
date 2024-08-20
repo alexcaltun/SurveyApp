@@ -69,7 +69,23 @@ public class QuestionDTO {
 	public static QuestionDTO fromQuestion(Question question) {
 		QuestionDTO questionDTO = new QuestionDTO();
 
+		questionDTO.setId(question.getId());
+		questionDTO.setQuestionId(question.getQuestionId());
+		questionDTO.setQuestion(question.getQuestion());
+		questionDTO.setAnswer(question.getAnswer());
+		questionDTO.setSurveyId(question.getSurvey().getSurveyId());
+
+		for (Answer answer : question.getAnswers()) {
+			questionDTO.getAnswerDTOs().add(AnswerDTO.fromAnswer(answer));
+		}
+
 		return questionDTO;
+	}
+
+	public static Question fromQuestionDTO(QuestionDTO questionDTO) {
+		Question question = new Question();
+
+		return question;
 	}
 
 }

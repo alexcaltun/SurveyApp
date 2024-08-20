@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -30,9 +32,9 @@ public class Question {
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
 	private List<Answer> answers = new ArrayList<Answer>();
 
-	// @ManyToOne(cascade = CascadeType.ALL)
-	// @JoinColumn(name = "question_id", nullable = true)
-	// private Survey survey;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "question_id", nullable = true)
+	private Survey survey;
 
 	public Question() {
 		super();
@@ -78,13 +80,13 @@ public class Question {
 		this.answers = answers;
 	}
 
-	// public Survey getSurvey() {
-	// return survey;
-	// }
+	public Survey getSurvey() {
+		return survey;
+	}
 
-	// public void setSurvey(Survey survey) {
-	// this.survey = survey;
-	// }
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
+	}
 
 	@Override
 	public int hashCode() {
