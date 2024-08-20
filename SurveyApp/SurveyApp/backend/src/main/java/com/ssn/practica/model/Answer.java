@@ -24,7 +24,6 @@ public class Answer {
 	@Column(nullable = false)
 	private String answer;
 
-	
 	@Column(nullable = false)
 	private Date answerDate;
 
@@ -100,6 +99,9 @@ public class Answer {
 		}
 		Answer other = (Answer) obj;
 		return Objects.equals(answerId, other.answerId);
+	}
+
+	{
 	}
 
 }
