@@ -22,6 +22,7 @@ import com.ssn.practica.model.Answer;
 @Path("/answers")
 public class AnswerServlet {
 
+	
 	AnswerDAO answerDAO = new AnswerDAO();
 
 	@GET
