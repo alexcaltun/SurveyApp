@@ -31,14 +31,10 @@ public class SurveyDTO {
 	public SurveyDTO() {
 		super();
 	}
-
-	
 	
 	public String getSurveyId() {
 		return surveyId;
 	}
-
-
 
 	public void setSurveyId(String surveyId) {
 		this.surveyId = surveyId;
@@ -50,61 +46,41 @@ public class SurveyDTO {
 		return title;
 	}
 
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-
 
 	public String getUserUsername() {
 		return userUsername;
 	}
 
-
-
 	public void setUserUsername(String userUsername) {
 		this.userUsername = userUsername;
 	}
-
-
 
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
-
-
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
-
 
 	public Date getDueDate() {
 		return dueDate;
 	}
 
-
-
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-
-
 
 	public double getPrice() {
 		return price;
@@ -116,13 +92,9 @@ public class SurveyDTO {
 		this.price = price;
 	}
 
-
-
 	public List<String> getCountries() {
 		return countries;
 	}
-
-
 
 	public void setCountries(List<String> countries) {
 		this.countries = countries;
@@ -134,25 +106,17 @@ public class SurveyDTO {
 		return cities;
 	}
 
-
-
 	public void setCities(List<String> cities) {
 		this.cities = cities;
 	}
-
-
 
 	public List<QuestionDTO> getQuestionDTOs() {
 		return questionDTOs;
 	}
 
-
-
 	public void setQuestionDTOs(List<QuestionDTO> questionDTOs) {
 		this.questionDTOs = questionDTOs;
 	}
-
-
 
 	public static SurveyDTO fromSurvey(Survey survey) {
 		SurveyDTO surveyDTO = new SurveyDTO();
