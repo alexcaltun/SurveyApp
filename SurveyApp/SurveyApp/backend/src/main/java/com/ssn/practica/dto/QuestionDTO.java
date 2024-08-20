@@ -10,7 +10,7 @@ public class QuestionDTO {
 	private String questionId;
 	private String question;
 	private Answer answer;
-	private List<AnswerDTO> answerDTOs = new ArrayList<AnswerDTO>();
+	private List<String> options = new ArrayList<String>();
 	private String surveyId;
 
 	public QuestionDTO() {
@@ -41,12 +41,12 @@ public class QuestionDTO {
 		this.answer = answer;
 	}
 
-	public List<AnswerDTO> getAnswerDTOs() {
-		return answerDTOs;
+	public List<String> getOptions() {
+		return options;
 	}
 
-	public void setAnswerDTOs(List<AnswerDTO> answerDTOs) {
-		this.answerDTOs = answerDTOs;
+	public void setOptions(List<String> options) {
+		this.options = options;
 	}
 
 	public String getSurveyId() {
@@ -64,10 +64,7 @@ public class QuestionDTO {
 		questionDTO.setQuestion(question.getQuestion());
 		questionDTO.setAnswer(question.getAnswer());
 		questionDTO.setSurveyId(question.getSurvey().getSurveyId());
-
-		for (Answer answer : question.getAnswers()) {
-			questionDTO.getAnswerDTOs().add(AnswerDTO.fromAnswer(answer));
-		}
+		questionDTO.setOptions(question.getOptions());
 
 		return questionDTO;
 	}
@@ -78,14 +75,7 @@ public class QuestionDTO {
 		question.setQuestionId(questionDTO.getQuestionId());
 		question.setQuestion(questionDTO.getQuestion());
 		question.setAnswer(questionDTO.getAnswer());
-
-		List<Answer> answers = new ArrayList<Answer>();
-
-		for (AnswerDTO answerDTO : questionDTO.getAnswerDTOs()) {
-			answers.add(AnswerDTO.fromAnswerDTO(answerDTO));
-		}
-
-		question.setAnswers(answers);
+		question.setOptions(questionDTO.getOptions());
 
 		// SurveyDAO surveyDAO = new SurveyDAO();
 		// Survey survey = surveyDTO.getSurveyBySurveyId(questionDTO.getSurveyId());

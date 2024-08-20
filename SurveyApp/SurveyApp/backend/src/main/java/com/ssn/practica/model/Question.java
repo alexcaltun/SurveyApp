@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,17 +19,17 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private String questionId;
 
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private String question;
 
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private Answer answer;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-	private List<Answer> answers = new ArrayList<Answer>();
+	private List<String> options = new ArrayList<String>();
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "question_id", nullable = true)
@@ -72,12 +71,12 @@ public class Question {
 		this.answer = answer;
 	}
 
-	public List<Answer> getAnswers() {
-		return answers;
+	public List<String> getOptions() {
+		return options;
 	}
 
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
+	public void setOptions(List<String> options) {
+		this.options = options;
 	}
 
 	public Survey getSurvey() {
@@ -111,7 +110,7 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", questionId=" + questionId + ", question=" + question + ", answer=" + answer
-				+ ", answers=" + answers + "]";
+				+ ", answers=" + options + "]";
 	}
 
 }

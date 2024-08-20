@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +17,13 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private String answerId;
 
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private String answer;
 
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private Date date;
 
 	@ManyToOne(cascade = CascadeType.ALL)
