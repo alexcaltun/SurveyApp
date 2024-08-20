@@ -61,7 +61,6 @@ public class AnswerServlet {
 	@Path("getAnswersByDate")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<AnswerDTO> getAnswersByDate(@QueryParam("date") Date date) {
-
 		List<Answer> answers = answerDAO.getAnswersByDate(date);
 		List<AnswerDTO> answerDTOs = answers.stream().map(AnswerDTO::fromAnswer).collect(Collectors.toList());
 		return answerDTOs;
