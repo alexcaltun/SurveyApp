@@ -21,35 +21,7 @@ import com.ssn.practica.model.Answer;
 
 @Path("/answers")
 public class AnswerServlet {
-
-	
 	AnswerDAO answerDAO = new AnswerDAO();
-
-	@GET
-	@Path("getAnswersByTaskId/{taskId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<AnswerDTO> getAnswersByTaskId(@PathParam("taskId") String taskId) {
-		List<Answer> answers = answerDAO.getAnswersByTaskId(taskId);
-		List<AnswerDTO> answerDTOs = answers.stream().map(AnswerDTO::fromAnswer).collect(Collectors.toList());
-		return answerDTOs;
-	}
-
-	@GET
-	@Path("getAnswersByDate")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<AnswerDTO> getAnswersByDate(@QueryParam("date") Date date) {
-
-		List<Answer> answers = answerDAO.getAnswersByDate(date);
-		List<AnswerDTO> answerDTOs = answers.stream().map(AnswerDTO::fromAnswer).collect(Collectors.toList());
-		return answerDTOs;
-	}
-
-	@GET
-	@Path("getAnswerByAnswerId/{answerId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public AnswerDTO getAnswerByAnswerId(@PathParam("answerId") String answerId) {
-		return AnswerDTO.fromAnswer(answerDAO.getAnswerByAnswerId(answerId));
-	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -67,5 +39,31 @@ public class AnswerServlet {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateAnswer(AnswerDTO answerDTO) {
 		answerDAO.updateAnswer(AnswerDTO.fromAnswerDTO(answerDTO));
+	}
+
+	@GET
+	@Path("getAnswerByAnswerId/{answerId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public AnswerDTO getAnswerByAnswerId(@PathParam("answerId") String answerId) {
+		return AnswerDTO.fromAnswer(answerDAO.getAnswerByAnswerId(answerId));
+	}
+
+	@GET
+	@Path("getAnswersByQuestionId/{questionId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<AnswerDTO> getAnswersByQuestionId(@PathParam("questionId") String questionId) {
+		List<Answer> answers = answerDAO.getAnswersByQuestionId(questionId);
+		List<AnswerDTO> answerDTOs = answers.stream().map(AnswerDTO::fromAnswer).collect(Collectors.toList());
+		return answerDTOs;
+	}
+
+	@GET
+	@Path("getAnswersByDate")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<AnswerDTO> getAnswersByDate(@QueryParam("date") Date date) {
+
+		List<Answer> answers = answerDAO.getAnswersByDate(date);
+		List<AnswerDTO> answerDTOs = answers.stream().map(AnswerDTO::fromAnswer).collect(Collectors.toList());
+		return answerDTOs;
 	}
 }

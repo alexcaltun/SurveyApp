@@ -19,7 +19,7 @@ public class QuestionDAO {
 		}.run();
 	}
 
-	public void deteleQuestion(String id) {
+	public void deleteQuestion(String id) {
 		new WithSessionAndTransaction<Void>() {
 			@Override
 			protected void executeBusinessLogic(Session session) {
