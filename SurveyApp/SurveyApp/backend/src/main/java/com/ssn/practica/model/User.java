@@ -23,6 +23,7 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
+	private String country;
 	
 	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
 	private List<Survey> surveys = new ArrayList<Survey>();
@@ -71,6 +72,14 @@ public class User {
 
 	public void setSurveys(List<Survey> surveys) {
 		this.surveys = surveys;
+	}
+	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	@Override

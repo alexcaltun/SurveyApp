@@ -34,8 +34,8 @@ public class Survey {
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
-//	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-//	private List<Questions> questions = new ArrayList<Questions>();
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+	private List<Question> questions = new ArrayList<Question>();
 	
 	public Survey() {
 		super();
@@ -121,12 +121,23 @@ public class Survey {
 	public void setSurveyId(String surveyId) {
 		this.surveyId = surveyId;
 	}
+	
 
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	
+	
 	@Override
 	public String toString() {
-		return "Survey [id=" + id + ", title=" + title + ", description=" + description + ", creationDate="
-				+ creationDate + ", dueDate=" + dueDate + ", price=" + price + ", countries=" + countries + ", cities="
-				+ cities + "]";
+		return "Survey [id=" + id + ", surveyId=" + surveyId + ", title=" + title + ", description=" + description
+				+ ", creationDate=" + creationDate + ", dueDate=" + dueDate + ", price=" + price + ", countries="
+				+ countries + ", cities=" + cities + ", questions=" + questions + "]";
 	}
 
 	@Override
