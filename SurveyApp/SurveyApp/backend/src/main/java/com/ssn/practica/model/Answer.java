@@ -25,11 +25,11 @@ public class Answer {
 	private String answer;
 
 	@Column(nullable = false)
-	private Date answerDate;
+	private Date date;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "task_id", nullable = true)
-	private Task task;
+	@JoinColumn(name = "question_id", nullable = true)
+	private Question question;
 
 	public Answer() {
 		super();
@@ -52,19 +52,11 @@ public class Answer {
 	}
 
 	public Date getDate() {
-		return answerDate;
+		return date;
 	}
 
 	public void setDate(Date answerDate) {
-		this.answerDate = answerDate;
-	}
-
-	public Task getTask() {
-		return task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
+		this.date = answerDate;
 	}
 
 	public String getAnswerId() {
@@ -75,10 +67,17 @@ public class Answer {
 		this.answerId = answerId;
 	}
 
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", answerId=" + answerId + ", answer=" + answer + ", date=" + answerDate
-				+ "taskId= " + task.getTaskId() + "]";
+		return "Answer [id=" + id + ", answerId=" + answerId + ", answer=" + answer + ", answerDate=" + date + "]";
 	}
 
 	@Override
