@@ -101,7 +101,4 @@ public class Answer {
 		return Objects.equals(answerId, other.answerId);
 	}
 
-	{
-	}
-
 }
