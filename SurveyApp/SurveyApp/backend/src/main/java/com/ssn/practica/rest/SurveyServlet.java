@@ -4,8 +4,11 @@ import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -20,11 +23,11 @@ import com.ssn.practica.model.Survey;
 public class SurveyServlet {
 	SurveyDAO surveyDAO = new SurveyDAO();
 
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public void addSurvey(SurveyDTO surveyDTO) {
-//		surveyDAO.addSurvey(SurveyDTO.fromSurveyDTO(surveyDTO));
-//	}
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addSurvey(SurveyDTO surveyDTO) {
+		surveyDAO.addSurvey(SurveyDTO.fromSurveyDTO(surveyDTO));
+	}
 
 	@DELETE
 	@Path("deleteSurvey/{surveyId}")
@@ -32,11 +35,11 @@ public class SurveyServlet {
 		surveyDAO.deleteSurvey(surveyId);
 	}
 
-//	@PUT
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public void updateSurvey(SurveyDTO surveyDTO) {
-//		surveyDAO.updateSurvey(SurveyDTO.fromSurveyDTO(surveyDTO));
-//	}
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateSurvey(SurveyDTO surveyDTO) {
+		surveyDAO.updateSurvey(SurveyDTO.fromSurveyDTO(surveyDTO));
+	}
 
 	@GET
 	@Path("getSurveyBySurveynId/{survayId}")
