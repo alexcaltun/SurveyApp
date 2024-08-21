@@ -3,8 +3,11 @@ package com.ssn.practica.rest;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,11 +21,11 @@ import com.ssn.practica.model.User;
 public class UserServlet {
 	UserDAO userDAO = new UserDAO();
 
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public void addUser(UserDTO userDTO) {
-//		userDAO.addUser(UserDTO.fromUserDTO(userDTO));
-//	}
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addUser(UserDTO userDTO) {
+		userDAO.addUser(UserDTO.fromUserDTO(userDTO));
+	}
 
 	@DELETE
 	@Path("deleteUser/{userId}")
@@ -30,11 +33,11 @@ public class UserServlet {
 		userDAO.deleteUser(userId);
 	}
 
-//	@PUT
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public void updateUser(UserDTO userDTO) {
-//		userDAO.updateUser(UserDTO.fromUserDTO(userDTO));
-//	}
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateUser(UserDTO userDTO) {
+		userDAO.updateUser(UserDTO.fromUserDTO(userDTO));
+	}
 
 	@GET
 	@Path("getUsersByCountry/{country}")

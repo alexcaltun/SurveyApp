@@ -15,26 +15,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Survey {
+public class Survey extends SurveyTemplate{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
-	private String surveyId;
-	private String title;
-	private String description;
-	private Date creationDate;
-	private Date dueDate;
-	private double price;
-	
-	private List<String> countries = new ArrayList<String>();
-	private List<String> cities = new ArrayList<String>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
-	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
 	private List<Question> questions = new ArrayList<Question>();
 	
 	public Survey() {

@@ -136,4 +136,24 @@ public class SurveyDTO {
 		return surveyDTO;
 	}
 
+	public static Survey fromSurveyDTO(SurveyDTO surveyDTO) {
+		
+		Survey survey = new Survey();
+		survey.setCities(surveyDTO.getCities());
+		survey.setCountries(surveyDTO.getCountries());
+		survey.setCreationDate(surveyDTO.getCreationDate());
+		survey.setDescription(surveyDTO.getDescription());
+		survey.setDueDate(surveyDTO.getDueDate());
+		survey.setPrice(surveyDTO.getPrice());
+		survey.setSurveyId(surveyDTO.getSurveyId());
+		survey.setTitle(surveyDTO.getTitle());
+		survey.setUserUsername(surveyDTO.getUserUsername());
+		
+		for(QuestionDTO questionDTO: surveyDTO.getQuestionDTOs())
+			survey.getQuestions().add(QuestionDTO.fromQuestionDTO(questionDTO));
+
+		return survey;
+		
+	}
+
 }

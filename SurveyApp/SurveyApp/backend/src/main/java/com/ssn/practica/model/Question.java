@@ -32,7 +32,7 @@ public class Question {
 	private List<String> options = new ArrayList<String>();
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "question_id", nullable = true)
+	@JoinColumn(name = "survey_id", nullable = true)
 	private Survey survey;
 
 	public Question() {

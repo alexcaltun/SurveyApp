@@ -74,10 +74,26 @@ public class UserDTO {
 		for(Survey survey: user.getSurveys())
 		{
 			SurveyDTO surveyDTO = SurveyDTO.fromSurvey(survey);
-			user.getSurveys().add(survey);
+			userDTO.getSurveys().add(surveyDTO);
 		}
 		
 		return userDTO;
+		
+	}
+
+	public static User fromUserDTO(UserDTO userDTO) {
+		
+		User user = new User();
+		user.setCountry(userDTO.getCountry());
+		user.setEmail(userDTO.getEmail());
+		user.setUsername(userDTO.getUsername());
+		for(SurveyDTO surveyDTO: userDTO.getSurveys())
+		{
+			Survey survey = SurveyDTO.fromSurveyDTO(surveyDTO);
+			user.getSurveys().add(survey);
+		}
+		
+		return user;
 		
 	}
 }
