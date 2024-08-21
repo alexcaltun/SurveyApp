@@ -3,8 +3,10 @@ package com.ssn.practica.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ssn.practica.dao.SurveyDAO;
 import com.ssn.practica.model.Answer;
 import com.ssn.practica.model.Question;
+import com.ssn.practica.model.Survey;
 
 public class QuestionDTO {
 	private String questionId;
@@ -77,10 +79,10 @@ public class QuestionDTO {
 		question.setAnswer(questionDTO.getAnswer());
 		question.setOptions(questionDTO.getOptions());
 
-		// SurveyDAO surveyDAO = new SurveyDAO();
-		// Survey survey = surveyDTO.getSurveyBySurveyId(questionDTO.getSurveyId());
+		SurveyDAO surveyDAO = new SurveyDAO();
+		Survey survey = surveyDAO.getSurveyBySurveyId(questionDTO.getSurveyId());
 
-		// question.setSurvey(survey);
+		question.setSurvey(survey);
 
 		return question;
 	}
