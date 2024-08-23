@@ -23,7 +23,9 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
-	private String country;
+
+	@OneToMany(mappedBy = "countryUser", cascade = CascadeType.ALL)
+	private List<Country> countries = new ArrayList<Country>();
 
 	@OneToMany(mappedBy = "surveyUser", cascade = CascadeType.ALL)
 	private List<Survey> surveys = new ArrayList<Survey>();
@@ -72,12 +74,12 @@ public class User {
 		this.surveys = surveys;
 	}
 
-	public String getCountry() {
-		return country;
+	public List<Country> getCountries() {
+		return countries;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
 	}
 
 	@Override
