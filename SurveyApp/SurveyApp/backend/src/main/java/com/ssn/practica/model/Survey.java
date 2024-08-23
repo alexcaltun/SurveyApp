@@ -1,12 +1,13 @@
 package com.ssn.practica.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,9 @@ public class Survey extends SurveyTemplate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+
+	@Enumerated(EnumType.STRING)
+	private State state;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = true)
@@ -40,74 +44,20 @@ public class Survey extends SurveyTemplate {
 		this.id = id;
 	}
 
-	@Override
-	public String getTitle() {
-		return title;
+	public State getState() {
+		return state;
 	}
 
-	@Override
-	public void setTitle(String title) {
-		this.title = title;
+	public void setState(State state) {
+		this.state = state;
 	}
 
-	@Override
-	public String getDescription() {
-		return description;
+	public User getSurveyUser() {
+		return surveyUser;
 	}
 
-	@Override
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	@Override
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	@Override
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	@Override
-	public Date getDueDate() {
-		return dueDate;
-	}
-
-	@Override
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	@Override
-	public double getPrice() {
-		return price;
-	}
-
-	@Override
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	@Override
-	public List<Country> getCountries() {
-		return countries;
-	}
-
-	@Override
-	public void setCountries(List<Country> countries) {
-		this.countries = countries;
-	}
-
-	@Override
-	public List<City> getCities() {
-		return cities;
-	}
-
-	@Override
-	public void setCities(List<City> cities) {
-		this.cities = cities;
+	public void setSurveyUser(User surveyUser) {
+		this.surveyUser = surveyUser;
 	}
 
 	public User getUser() {
@@ -116,16 +66,6 @@ public class Survey extends SurveyTemplate {
 
 	public void setUser(User surveyUser) {
 		this.surveyUser = surveyUser;
-	}
-
-	@Override
-	public String getSurveyId() {
-		return surveyId;
-	}
-
-	@Override
-	public void setSurveyId(String surveyId) {
-		this.surveyId = surveyId;
 	}
 
 	public List<Question> getQuestions() {

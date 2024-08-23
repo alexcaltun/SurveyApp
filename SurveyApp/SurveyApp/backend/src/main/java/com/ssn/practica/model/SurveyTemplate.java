@@ -43,6 +43,22 @@ public class SurveyTemplate {
 		return surveyId;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<QuestionTemplate> getQuestionsTemplate() {
+		return questions;
+	}
+
+	public void setQuestionsTemplate(List<QuestionTemplate> questions) {
+		this.questions = questions;
+	}
+
 	public void setSurveyId(String surveyId) {
 		this.surveyId = surveyId;
 	}

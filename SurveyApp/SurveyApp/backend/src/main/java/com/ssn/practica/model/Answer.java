@@ -14,10 +14,8 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	// @Column(nullable = false)
 	private String answerId;
 
-	// @Column(nullable = false)
 	private String answer;
 
 	@OneToOne(mappedBy = "answer")
