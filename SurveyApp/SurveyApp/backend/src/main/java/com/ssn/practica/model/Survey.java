@@ -1,5 +1,6 @@
 package com.ssn.practica.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +23,8 @@ public class Survey extends SurveyTemplate {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	private Date finishDate;
+
 	@Enumerated(EnumType.STRING)
 	private State state;
 
@@ -36,10 +39,12 @@ public class Survey extends SurveyTemplate {
 		super();
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -74,6 +79,14 @@ public class Survey extends SurveyTemplate {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+
+	public Date getFinishDate() {
+		return finishDate;
+	}
+
+	public void setFinishDate(Date finishDate) {
+		this.finishDate = finishDate;
 	}
 
 	@Override
