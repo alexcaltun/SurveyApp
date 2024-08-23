@@ -1,6 +1,5 @@
 package com.ssn.practica.rest;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.ssn.practica.dao.AnswerDAO;
@@ -57,12 +55,4 @@ public class AnswerServlet {
 		return answerDTOs;
 	}
 
-	@GET
-	@Path("getAnswersByDate")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<AnswerDTO> getAnswersByDate(@QueryParam("date") Date date) {
-		List<Answer> answers = answerDAO.getAnswersByDate(date);
-		List<AnswerDTO> answerDTOs = answers.stream().map(AnswerDTO::fromAnswer).collect(Collectors.toList());
-		return answerDTOs;
-	}
 }
