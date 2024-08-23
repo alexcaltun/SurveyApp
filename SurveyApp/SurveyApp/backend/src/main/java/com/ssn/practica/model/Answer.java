@@ -1,6 +1,5 @@
 package com.ssn.practica.model;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -20,9 +19,6 @@ public class Answer {
 
 	// @Column(nullable = false)
 	private String answer;
-
-	// @Column(nullable = false)
-	private Date date;
 
 	@OneToOne(mappedBy = "answer")
 	private Question question;
@@ -47,14 +43,6 @@ public class Answer {
 		this.answer = answer;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date answerDate) {
-		this.date = answerDate;
-	}
-
 	public String getAnswerId() {
 		return answerId;
 	}
@@ -71,10 +59,10 @@ public class Answer {
 		this.question = question;
 	}
 
-	@Override
-	public String toString() {
-		return "Answer [id=" + id + ", answerId=" + answerId + ", answer=" + answer + ", answerDate=" + date + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Answer [id=" + id + ", answerId=" + answerId + ", answer=" + answer + ", answerDate=" + date + "]";
+//	}
 
 	@Override
 	public int hashCode() {

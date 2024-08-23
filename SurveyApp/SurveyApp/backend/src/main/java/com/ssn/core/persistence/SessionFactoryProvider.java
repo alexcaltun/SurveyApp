@@ -6,8 +6,6 @@
 
 package com.ssn.core.persistence;
 
-import java.util.Calendar;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -59,9 +57,8 @@ public class SessionFactoryProvider {
 			@Override
 			protected void executeBusinessLogic(Session session) {
 				Answer answer = new Answer();
-				answer.setAnswer("cevaa");
+				// answer.setAnswer("cevaa");
 				answer.setAnswerId("123");
-				answer.setDate(Calendar.getInstance().getTime());
 
 				session.save(answer);
 

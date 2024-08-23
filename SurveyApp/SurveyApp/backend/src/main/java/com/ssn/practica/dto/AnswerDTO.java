@@ -1,7 +1,5 @@
 package com.ssn.practica.dto;
 
-import java.util.Date;
-
 import com.ssn.practica.dao.QuestionDAO;
 import com.ssn.practica.model.Answer;
 import com.ssn.practica.model.Question;
@@ -9,7 +7,6 @@ import com.ssn.practica.model.Question;
 public class AnswerDTO {
 	private String answerId;
 	private String answer;
-	private Date date;
 	private String questionId;
 
 	public AnswerDTO() {
@@ -32,14 +29,6 @@ public class AnswerDTO {
 		this.answer = answer;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public String getQuestionId() {
 		return questionId;
 	}
@@ -53,7 +42,6 @@ public class AnswerDTO {
 
 		answerDTO.setAnswerId(answer.getAnswerId());
 		answerDTO.setAnswer(answer.getAnswer());
-		answerDTO.setDate(answer.getDate());
 		answerDTO.setQuestionId(answer.getQuestion().getQuestionId());
 
 		return answerDTO;
@@ -64,7 +52,6 @@ public class AnswerDTO {
 
 		answer.setAnswerId(answerDTO.getAnswerId());
 		answer.setAnswer(answerDTO.getAnswer());
-		answer.setDate(answerDTO.getDate());
 
 		QuestionDAO questionDAO = new QuestionDAO();
 		Question question = questionDAO.getQuestionByQuestionId(answerDTO.getQuestionId());

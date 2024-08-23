@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
+import com.ssn.practica.model.City;
+import com.ssn.practica.model.Country;
 import com.ssn.practica.model.Question;
 import com.ssn.practica.model.Survey;
-import com.ssn.practica.model.User;
 
 public class SurveyDTO {
 
@@ -22,16 +18,16 @@ public class SurveyDTO {
 	private Date creationDate;
 	private Date dueDate;
 	private double price;
-	
-	private List<String> countries = new ArrayList<String>();
-	private List<String> cities = new ArrayList<String>();
-	
+
+	private List<Country> countries = new ArrayList<Country>();
+	private List<City> cities = new ArrayList<City>();
+
 	private List<QuestionDTO> questionDTOs = new ArrayList<QuestionDTO>();
-	
+
 	public SurveyDTO() {
 		super();
 	}
-	
+
 	public String getSurveyId() {
 		return surveyId;
 	}
@@ -39,8 +35,6 @@ public class SurveyDTO {
 	public void setSurveyId(String surveyId) {
 		this.surveyId = surveyId;
 	}
-
-
 
 	public String getTitle() {
 		return title;
@@ -86,27 +80,23 @@ public class SurveyDTO {
 		return price;
 	}
 
-
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public List<String> getCountries() {
+	public List<Country> getCountries() {
 		return countries;
 	}
 
-	public void setCountries(List<String> countries) {
+	public void setCountries(List<Country> countries) {
 		this.countries = countries;
 	}
 
-
-
-	public List<String> getCities() {
+	public List<City> getCities() {
 		return cities;
 	}
 
-	public void setCities(List<String> cities) {
+	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
 
@@ -129,15 +119,16 @@ public class SurveyDTO {
 		surveyDTO.setSurveyId(survey.getSurveyId());
 		surveyDTO.setTitle(survey.getTitle());
 		surveyDTO.setUserUsername(survey.getUser().getUsername());
-		
-		for(Question question: survey.getQuestions())
+
+		for (Question question : survey.getQuestions()) {
 			surveyDTO.getQuestionDTOs().add(QuestionDTO.fromQuestion(question));
+		}
 
 		return surveyDTO;
 	}
 
 	public static Survey fromSurveyDTO(SurveyDTO surveyDTO) {
-		
+
 		Survey survey = new Survey();
 		survey.setCities(surveyDTO.getCities());
 		survey.setCountries(surveyDTO.getCountries());
@@ -148,12 +139,13 @@ public class SurveyDTO {
 		survey.setSurveyId(surveyDTO.getSurveyId());
 		survey.setTitle(surveyDTO.getTitle());
 		survey.setUserUsername(surveyDTO.getUserUsername());
-		
-		for(QuestionDTO questionDTO: surveyDTO.getQuestionDTOs())
+
+		for (QuestionDTO questionDTO : surveyDTO.getQuestionDTOs()) {
 			survey.getQuestions().add(QuestionDTO.fromQuestionDTO(questionDTO));
+		}
 
 		return survey;
-		
+
 	}
 
 }

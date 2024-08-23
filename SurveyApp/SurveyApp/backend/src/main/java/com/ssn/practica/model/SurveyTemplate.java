@@ -5,14 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class SurveyTemplate {
@@ -28,17 +26,14 @@ public class SurveyTemplate {
 	protected Date dueDate;
 	protected double price;
 
-	@ElementCollection
-	@CollectionTable(name = "survey_countries", joinColumns = @JoinColumn(name = "survey_id"))
-	@Column(name = "country")
-	protected List<String> countries = new ArrayList<String>();
+	@OneToMany(mappedBy = "surveyTemplate", cascade = CascadeType.ALL)
+	protected List<Country> countries = new ArrayList<Country>();
 
-	@ElementCollection
-	@CollectionTable(name = "survey_cities", joinColumns = @JoinColumn(name = "survey_id"))
-	@Column(name = "city")
-	protected List<String> cities = new ArrayList<String>();
+	@OneToMany(mappedBy = "surveyTemplate", cascade = CascadeType.ALL)
+	protected List<City> cities = new ArrayList<City>();
 
-	// private Map<String, String> questionAnswer = new HashMap<String, String>();
+	@OneToMany(mappedBy = "surveyTemplate", cascade = CascadeType.ALL)
+	private List<QuestionTemplate> questions = new ArrayList<QuestionTemplate>();
 
 	public SurveyTemplate() {
 		super();
@@ -100,29 +95,21 @@ public class SurveyTemplate {
 		this.price = price;
 	}
 
-	public List<String> getCountries() {
+	public List<Country> getCountries() {
 		return countries;
 	}
 
-	public void setCountries(List<String> countries) {
+	public void setCountries(List<Country> countries) {
 		this.countries = countries;
 	}
 
-	public List<String> getCities() {
+	public List<City> getCities() {
 		return cities;
 	}
 
-	public void setCities(List<String> cities) {
+	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
-
-//	public Map<String, String> getQuestionAnswer() {
-//		return questionAnswer;
-//	}
-//
-//	public void setQuestionAnswer(Map<String, String> questionAnswer) {
-//		this.questionAnswer = questionAnswer;
-//	}
 
 //	@Override
 //	public String toString() {

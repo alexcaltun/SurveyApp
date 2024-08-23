@@ -5,14 +5,15 @@ import java.util.List;
 
 import com.ssn.practica.dao.SurveyDAO;
 import com.ssn.practica.model.Answer;
+import com.ssn.practica.model.Option;
 import com.ssn.practica.model.Question;
 import com.ssn.practica.model.Survey;
 
 public class QuestionDTO {
 	private String questionId;
-	private String question;
+	private String text;
 	private Answer answer;
-	private List<String> options = new ArrayList<String>();
+	private List<Option> options = new ArrayList<Option>();
 	private String surveyId;
 
 	public QuestionDTO() {
@@ -27,12 +28,12 @@ public class QuestionDTO {
 		this.questionId = questionId;
 	}
 
-	public String getQuestion() {
-		return question;
+	public String getText() {
+		return text;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Answer getAnswer() {
@@ -43,11 +44,11 @@ public class QuestionDTO {
 		this.answer = answer;
 	}
 
-	public List<String> getOptions() {
+	public List<Option> getOptions() {
 		return options;
 	}
 
-	public void setOptions(List<String> options) {
+	public void setOptions(List<Option> options) {
 		this.options = options;
 	}
 
@@ -63,7 +64,7 @@ public class QuestionDTO {
 		QuestionDTO questionDTO = new QuestionDTO();
 
 		questionDTO.setQuestionId(question.getQuestionId());
-		questionDTO.setQuestion(question.getQuestion());
+		questionDTO.setText(question.getText());
 		questionDTO.setAnswer(question.getAnswer());
 		questionDTO.setSurveyId(question.getSurvey().getSurveyId());
 		questionDTO.setOptions(question.getOptions());
@@ -75,7 +76,7 @@ public class QuestionDTO {
 		Question question = new Question();
 
 		question.setQuestionId(questionDTO.getQuestionId());
-		question.setQuestion(questionDTO.getQuestion());
+		question.setText(questionDTO.getText());
 		question.setAnswer(questionDTO.getAnswer());
 		question.setOptions(questionDTO.getOptions());
 

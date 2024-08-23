@@ -91,22 +91,22 @@ public class Survey extends SurveyTemplate {
 	}
 
 	@Override
-	public List<String> getCountries() {
+	public List<Country> getCountries() {
 		return countries;
 	}
 
 	@Override
-	public void setCountries(List<String> countries) {
+	public void setCountries(List<Country> countries) {
 		this.countries = countries;
 	}
 
 	@Override
-	public List<String> getCities() {
+	public List<City> getCities() {
 		return cities;
 	}
 
 	@Override
-	public void setCities(List<String> cities) {
+	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
 
