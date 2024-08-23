@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +26,9 @@ public class User {
 	private String email;
 	private String password;
 
-	@OneToMany(mappedBy = "countryUser", cascade = CascadeType.ALL)
-	private List<Country> countries = new ArrayList<Country>();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "country_id")
+	private Country country;
 
 	@OneToMany(mappedBy = "surveyUser", cascade = CascadeType.ALL)
 	private List<Survey> surveys = new ArrayList<Survey>();
@@ -74,12 +77,12 @@ public class User {
 		this.surveys = surveys;
 	}
 
-	public List<Country> getCountries() {
-		return countries;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setCountries(List<Country> countries) {
-		this.countries = countries;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	@Override

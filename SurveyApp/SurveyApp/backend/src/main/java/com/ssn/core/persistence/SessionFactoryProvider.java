@@ -12,7 +12,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.ssn.practica.model.Answer;
+import com.ssn.practica.model.City;
+import com.ssn.practica.model.Country;
+import com.ssn.practica.model.Option;
 import com.ssn.practica.model.Question;
+import com.ssn.practica.model.QuestionTemplate;
+import com.ssn.practica.model.State;
 import com.ssn.practica.model.Survey;
 import com.ssn.practica.model.SurveyTemplate;
 import com.ssn.practica.model.User;
@@ -34,11 +39,16 @@ public class SessionFactoryProvider {
 				factory = configuration.buildSessionFactory(builder.build());
 
 				factory = new Configuration().configure("hibernate.cfg.xml") //
-						.addAnnotatedClass(Answer.class) //
 						.addAnnotatedClass(Question.class) //
 						.addAnnotatedClass(User.class) //
 						.addAnnotatedClass(Survey.class) //
 						.addAnnotatedClass(SurveyTemplate.class) //
+						.addAnnotatedClass(QuestionTemplate.class) //
+						.addAnnotatedClass(City.class) //
+						.addAnnotatedClass(Country.class) //
+						.addAnnotatedClass(Option.class) //
+						.addAnnotatedClass(State.class) //
+						.addAnnotatedClass(Answer.class) //
 						.buildSessionFactory();
 				// init();
 			} catch (Throwable ex) {
