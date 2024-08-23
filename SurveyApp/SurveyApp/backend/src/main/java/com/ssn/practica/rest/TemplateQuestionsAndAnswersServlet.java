@@ -10,18 +10,19 @@ import javax.ws.rs.core.MediaType;
 
 import com.ssn.practica.dao.TemplateQuestionsAndAnswersDAO;
 
+@Path("/templates")
 public class TemplateQuestionsAndAnswersServlet {
 	TemplateQuestionsAndAnswersDAO templateQuestionsAndAnswersDAO = new TemplateQuestionsAndAnswersDAO();
 
 	@GET
-	@Path("getAllQuestions")
+	@Path("/getAllQuestions")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<String> getAllQuestions() throws IOException {
 		return templateQuestionsAndAnswersDAO.getAllQuestions();
 	}
 
 	@GET
-	@Path("getAllAnswers")
+	@Path("/getAllAnswers")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<List<String>> getAllAnswers() throws IOException {
 		return templateQuestionsAndAnswersDAO.getAllAnswers();
