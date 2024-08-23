@@ -14,9 +14,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.ssn.practica.model.Answer;
-//import com.ssn.practica.model.OrderState;
-import com.ssn.practica.model.Task;
-import com.ssn.practica.model.TaskState;
+import com.ssn.practica.model.Question;
+import com.ssn.practica.model.Survey;
+import com.ssn.practica.model.SurveyTemplate;
+import com.ssn.practica.model.User;
 
 public class SessionFactoryProvider {
 
@@ -35,8 +36,11 @@ public class SessionFactoryProvider {
 				factory = configuration.buildSessionFactory(builder.build());
 
 				factory = new Configuration().configure("hibernate.cfg.xml") //
-						.addAnnotatedClass(Task.class) //
 						.addAnnotatedClass(Answer.class) //
+						.addAnnotatedClass(Question.class) //
+						.addAnnotatedClass(User.class) //
+						.addAnnotatedClass(Survey.class) //
+						.addAnnotatedClass(SurveyTemplate.class) //
 						.buildSessionFactory();
 				// init();
 			} catch (Throwable ex) {
@@ -60,19 +64,6 @@ public class SessionFactoryProvider {
 				answer.setDate(Calendar.getInstance().getTime());
 
 				session.save(answer);
-
-				Task task = new Task();
-				task.setTaskId("333");
-				task.setCountry("Romania");
-				task.setCity("Timisoara");
-				task.setDescription("Gasiti masinile rosii");
-				task.setDueDate(Calendar.getInstance().getTime());
-				task.setState(TaskState.UNASSIGNED);
-				task.getAnswers().add(answer);
-
-				session.save(task);
-
-				answer.setTask(task);
 
 			}
 

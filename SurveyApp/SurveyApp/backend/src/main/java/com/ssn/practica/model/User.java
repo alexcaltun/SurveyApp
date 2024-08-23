@@ -15,21 +15,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MY_USER")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	private String username;
 	private String email;
 	private String password;
 	private String country;
-	
-	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "surveyUser", cascade = CascadeType.ALL)
 	private List<Survey> surveys = new ArrayList<Survey>();
 
-	
-	
 	public User() {
 		super();
 	}
@@ -73,7 +71,7 @@ public class User {
 	public void setSurveys(List<Survey> surveys) {
 		this.surveys = surveys;
 	}
-	
+
 	public String getCountry() {
 		return country;
 	}
@@ -95,16 +93,17 @@ public class User {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		User other = (User) obj;
 		return Objects.equals(username, other.username);
 	}
-	
 
-	
 }

@@ -3,13 +3,11 @@ package com.ssn.practica.model;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Answer {
@@ -26,8 +24,7 @@ public class Answer {
 	// @Column(nullable = false)
 	private Date date;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "question_id", nullable = true)
+	@OneToOne(mappedBy = "answer")
 	private Question question;
 
 	public Answer() {

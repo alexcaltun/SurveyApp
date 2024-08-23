@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Question {
@@ -25,10 +28,13 @@ public class Question {
 	// @Column(nullable = false)
 	private String question;
 
-	// @Column(nullable = false)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "answer_id", referencedColumnName = "id")
 	private Answer answer;
 
-	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+	@ElementCollection
+	@CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
+	@Column(name = "option_value")
 	private List<String> options = new ArrayList<String>();
 
 	@ManyToOne(cascade = CascadeType.ALL)

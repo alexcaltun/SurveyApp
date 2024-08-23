@@ -2,12 +2,23 @@ package com.ssn.practica.model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+@Entity
 public class SurveyTemplate {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
 
 	protected String surveyId;
 	protected String title;
@@ -16,14 +27,19 @@ public class SurveyTemplate {
 	protected Date creationDate;
 	protected Date dueDate;
 	protected double price;
-	
-	protected List<String> countries = new ArrayList<String>();
-	protected List<String> cities = new ArrayList<String>();
-	
-	private Map<String, String> questionAnswer = new HashMap<String,String>();
 
-	
-	
+	@ElementCollection
+	@CollectionTable(name = "survey_countries", joinColumns = @JoinColumn(name = "survey_id"))
+	@Column(name = "country")
+	protected List<String> countries = new ArrayList<String>();
+
+	@ElementCollection
+	@CollectionTable(name = "survey_cities", joinColumns = @JoinColumn(name = "survey_id"))
+	@Column(name = "city")
+	protected List<String> cities = new ArrayList<String>();
+
+	// private Map<String, String> questionAnswer = new HashMap<String, String>();
+
 	public SurveyTemplate() {
 		super();
 	}
@@ -100,18 +116,18 @@ public class SurveyTemplate {
 		this.cities = cities;
 	}
 
-	public Map<String, String> getQuestionAnswer() {
-		return questionAnswer;
-	}
+//	public Map<String, String> getQuestionAnswer() {
+//		return questionAnswer;
+//	}
+//
+//	public void setQuestionAnswer(Map<String, String> questionAnswer) {
+//		this.questionAnswer = questionAnswer;
+//	}
 
-	public void setQuestionAnswer(Map<String, String> questionAnswer) {
-		this.questionAnswer = questionAnswer;
-	}
-
-	@Override
-	public String toString() {
-		return "SurveyTemplate [surveyId=" + surveyId + ", title=" + title + ", questionAnswer=" + questionAnswer + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "SurveyTemplate [surveyId=" + surveyId + ", title=" + title + ", questionAnswer=" + questionAnswer + "]";
+//	}
 
 	@Override
 	public int hashCode() {
@@ -120,16 +136,17 @@ public class SurveyTemplate {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		SurveyTemplate other = (SurveyTemplate) obj;
 		return Objects.equals(surveyId, other.surveyId);
 	}
-	
-	
-	
+
 }
