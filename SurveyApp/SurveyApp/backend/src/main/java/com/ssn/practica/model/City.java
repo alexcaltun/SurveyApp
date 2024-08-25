@@ -15,6 +15,8 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	private String name;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "country_id", nullable = true)
 	private Country country;
@@ -25,6 +27,14 @@ public class City {
 
 	public City() {
 		super();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {

@@ -20,6 +20,8 @@ public class Country {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	private String name;
+
 	@OneToOne(mappedBy = "country")
 	private User countryUser;
 
@@ -32,6 +34,14 @@ public class Country {
 
 	public Country() {
 		super();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {

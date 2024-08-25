@@ -51,6 +51,17 @@ public class UserDAO {
 //		}.run();
 //	}
 
+	public User getUserByUsername(String username) {
+		return new WithSessionAndTransaction<User>() {
+			@Override
+			protected void executeBusinessLogic(Session session) {
+				User user = session.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class)
+						.setParameter("username", username).uniqueResult();
+				setReturnValue(user);
+			}
+		}.run();
+	}
+
 	public List<User> getUsersByCountry(String country) {
 		return new WithSessionAndTransaction<List<User>>() {
 
