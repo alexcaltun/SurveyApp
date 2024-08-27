@@ -1,103 +1,18 @@
 package com.ssn.practica.dto;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.ssn.practica.model.City;
-import com.ssn.practica.model.Country;
 import com.ssn.practica.model.Question;
 import com.ssn.practica.model.Survey;
 
-public class SurveyDTO {
-
-	private String surveyId;
-	private String title;
-	private String description;
-	private String userUsername;
-	private Date creationDate;
-	private Date dueDate;
-	private double price;
-
-	private List<Country> countries = new ArrayList<Country>();
-	private List<City> cities = new ArrayList<City>();
+public class SurveyDTO extends SurveyTemplateDTO {
 
 	private List<QuestionDTO> questionDTOs = new ArrayList<QuestionDTO>();
 
 	public SurveyDTO() {
 		super();
-	}
-
-	public String getSurveyId() {
-		return surveyId;
-	}
-
-	public void setSurveyId(String surveyId) {
-		this.surveyId = surveyId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getUserUsername() {
-		return userUsername;
-	}
-
-	public void setUserUsername(String userUsername) {
-		this.userUsername = userUsername;
-	}
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public Date getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public List<Country> getCountries() {
-		return countries;
-	}
-
-	public void setCountries(List<Country> countries) {
-		this.countries = countries;
-	}
-
-	public List<City> getCities() {
-		return cities;
-	}
-
-	public void setCities(List<City> cities) {
-		this.cities = cities;
 	}
 
 	public List<QuestionDTO> getQuestionDTOs() {
@@ -110,8 +25,10 @@ public class SurveyDTO {
 
 	public static SurveyDTO fromSurvey(Survey survey) {
 		SurveyDTO surveyDTO = new SurveyDTO();
-		surveyDTO.setCities(survey.getCities());
-		surveyDTO.setCountries(survey.getCountries());
+		surveyDTO.setCountriesDTO(
+				survey.getCountries().stream().map(CountryDTO::fromCountry).collect(Collectors.toList()));
+
+		surveyDTO.setCitiesDTO(survey.getCities().stream().map(CityDTO::fromCity).collect(Collectors.toList()));
 		surveyDTO.setCreationDate(survey.getCreationDate());
 		surveyDTO.setDescription(survey.getDescription());
 		surveyDTO.setDueDate(survey.getDueDate());
@@ -130,8 +47,10 @@ public class SurveyDTO {
 	public static Survey fromSurveyDTO(SurveyDTO surveyDTO) {
 
 		Survey survey = new Survey();
-		survey.setCities(surveyDTO.getCities());
-		survey.setCountries(surveyDTO.getCountries());
+		survey.setCountries(
+				surveyDTO.getCountriesDTO().stream().map(CountryDTO::fromCountryDTO).collect(Collectors.toList()));
+
+		survey.setCities(surveyDTO.getCitiesDTO().stream().map(CityDTO::fromCityDTO).collect(Collectors.toList()));
 		survey.setCreationDate(surveyDTO.getCreationDate());
 		survey.setDescription(surveyDTO.getDescription());
 		survey.setDueDate(surveyDTO.getDueDate());

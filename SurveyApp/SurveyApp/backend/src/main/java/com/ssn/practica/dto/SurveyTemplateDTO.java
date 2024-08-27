@@ -8,18 +8,19 @@ import com.ssn.practica.model.SurveyTemplate;
 
 public class SurveyTemplateDTO {
 
-	private String surveyId;
-	private String title;
-	private String description;
-	private String userUsername;
+	protected String surveyId;
+	protected String title;
+	protected String description;
+	protected String userUsername;
 
-	private Date creationDate;
-	private Date dueDate;
+	protected Date creationDate;
+	protected Date dueDate;
 
-	private double price;
+	protected double price;
 
-	private List<CountryDTO> countriesDTO;
-	private List<CityDTO> citiesDTO;
+	protected List<CountryDTO> countriesDTO;
+	protected List<CityDTO> citiesDTO;
+
 	private List<QuestionTemplateDTO> questionsDTO;
 
 	public SurveyTemplateDTO() {
@@ -106,7 +107,7 @@ public class SurveyTemplateDTO {
 		this.questionsDTO = questionsDTO;
 	}
 
-	public static SurveyTemplateDTO SurveyTemplate(SurveyTemplate surveyTemplate) {
+	public static SurveyTemplateDTO fromSurveyTemplate(SurveyTemplate surveyTemplate) {
 		SurveyTemplateDTO dto = new SurveyTemplateDTO();
 		dto.setSurveyId(surveyTemplate.getSurveyId());
 		dto.setTitle(surveyTemplate.getTitle());
@@ -127,7 +128,7 @@ public class SurveyTemplateDTO {
 		return dto;
 	}
 
-	public static SurveyTemplate SurveyTemplateDTO(SurveyTemplateDTO dto) {
+	public static SurveyTemplate fromSurveyTemplateDTO(SurveyTemplateDTO dto) {
 		SurveyTemplate surveyTemplate = new SurveyTemplate();
 		surveyTemplate.setSurveyId(dto.getSurveyId());
 		surveyTemplate.setTitle(dto.getTitle());
