@@ -1,6 +1,8 @@
 package com.ssn.practica.dto;
 
+import com.ssn.practica.dao.QuestionTemplateDAO;
 import com.ssn.practica.model.Option;
+import com.ssn.practica.model.QuestionTemplate;
 
 public class OptionDTO {
 	private String optionID;
@@ -51,9 +53,11 @@ public class OptionDTO {
 		option.setOptionId(optionDTO.getOptionID());
 		option.setText(optionDTO.getText());
 
-//		QuestionTemplateDAO questionTemplateDAO = new QuestionTemplateDAO();
-//		QuestionTemplate questionTemplate = questionTemplateDAO
-//				.getQuestionTemplateByQuestionTemplateID(optionDTO.getQuestionTemplateId());
+		QuestionTemplateDAO questionTemplateDAO = new QuestionTemplateDAO();
+		QuestionTemplate questionTemplate = questionTemplateDAO
+				.getQuestionTemplateByQuestionId(optionDTO.getQuestionTemplateId());
+
+		option.setQuestionTemplate(questionTemplate);
 
 		return option;
 	}

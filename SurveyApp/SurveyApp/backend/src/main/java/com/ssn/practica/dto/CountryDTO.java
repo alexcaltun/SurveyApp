@@ -3,9 +3,11 @@ package com.ssn.practica.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ssn.practica.dao.SurveyTemplateDAO;
 import com.ssn.practica.dao.UserDAO;
 import com.ssn.practica.model.City;
 import com.ssn.practica.model.Country;
+import com.ssn.practica.model.SurveyTemplate;
 import com.ssn.practica.model.User;
 
 public class CountryDTO {
@@ -74,10 +76,9 @@ public class CountryDTO {
 		User user = userDAO.getUserByUsername(countryDTO.getUserUsername());
 		country.setCountryUser(user);
 
-//		SurveyTemplateDAO surveyTemplateDAO = new SurveyTemplateDAO();
-//		SurveyTRemplate surveyTemplate = surveyTemplateDAO
-//				.getSurveyTemplateBySurveyTemplateId(countryDTO.getSurveyTemplateId());
-//		country.setSurveyTemplate(surveyTemplate);
+		SurveyTemplateDAO surveyTemplateDAO = new SurveyTemplateDAO();
+		SurveyTemplate surveyTemplate = surveyTemplateDAO.getSurveyTemplateBySurveyId(countryDTO.getSurveyTemplateId());
+		country.setSurveyTemplate(surveyTemplate);
 
 		for (CityDTO cityDTO : countryDTO.getCities()) {
 			City city = CityDTO.fromCityDTO(cityDTO);

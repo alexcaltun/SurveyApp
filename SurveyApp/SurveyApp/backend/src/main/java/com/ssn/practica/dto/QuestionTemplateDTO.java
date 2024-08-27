@@ -3,6 +3,7 @@ package com.ssn.practica.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ssn.practica.dao.SurveyTemplateDAO;
 import com.ssn.practica.model.Option;
 import com.ssn.practica.model.QuestionTemplate;
 
@@ -68,11 +69,12 @@ public class QuestionTemplateDTO {
 	public static QuestionTemplate fromQuestionTemplateDTO(QuestionTemplateDTO questionTemplateDTO) {
 
 		QuestionTemplate questionTemplate = new QuestionTemplate();
-		// SurveyTempplateDAO surveyTemplateDAO = new SurveyTemplateDAO();
+		SurveyTemplateDAO surveyTemplateDAO = new SurveyTemplateDAO();
 
 		questionTemplate.setQuestionId(questionTemplateDTO.getQuestionId());
 		questionTemplate.setText(questionTemplateDTO.getText());
-		// questionTemplate.setSurveyTemplate(surveyTemplateDAO.getSurveyTemplateBySurveyId);
+		questionTemplate.setSurveyTemplate(
+				surveyTemplateDAO.getSurveyTemplateBySurveyId(questionTemplateDTO.getSurveyTemplateId()));
 		for (OptionDTO optionDTO : questionTemplateDTO.getOptionsDTO()) {
 			questionTemplate.getOptions().add(OptionDTO.fromOptionDTO(optionDTO));
 		}

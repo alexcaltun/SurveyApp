@@ -1,8 +1,10 @@
 package com.ssn.practica.dto;
 
 import com.ssn.practica.dao.CountryDAO;
+import com.ssn.practica.dao.SurveyTemplateDAO;
 import com.ssn.practica.model.City;
 import com.ssn.practica.model.Country;
+import com.ssn.practica.model.SurveyTemplate;
 
 public class CityDTO {
 	private String Name;
@@ -56,10 +58,9 @@ public class CityDTO {
 		Country country = countryDAO.getCountryByCityName(cityDTO.getName());
 		city.setCountry(country);
 
-//		SurveyTemplateDAO surveyTemplateDAO = new SurveyTemplateDAO();
-//		SurveyTemplate surveyTemplate = surveyTemplateDAO
-//				.getSurveyTemplateBySurveyTemplateId(cityDTO.getSurveyTemplateId());
-//		city.setSurveyTemplate(surveyTemplate);
+		SurveyTemplateDAO surveyTemplateDAO = new SurveyTemplateDAO();
+		SurveyTemplate surveyTemplate = surveyTemplateDAO.getSurveyTemplateBySurveyId(cityDTO.getSurveyTemplateId());
+		city.setSurveyTemplate(surveyTemplate);
 
 		return city;
 	}
